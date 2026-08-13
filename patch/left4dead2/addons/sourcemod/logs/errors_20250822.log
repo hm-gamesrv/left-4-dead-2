@@ -1,0 +1,7 @@
+L 08/22/2025 - 17:41:32: SourceMod error session started
+L 08/22/2025 - 17:41:32: Info (map "c1m2_streets") (file "/home/user/local/share/game_server/Left_4_Dead_2/left4dead2/addons/sourcemod/logs/errors_20250822.log")
+L 08/22/2025 - 17:41:32: [SM] Failed to load plugin "nextmap.smx": Nextmap is incompatible with this game.
+L 08/22/2025 - 17:42:34: SourceMod error session started
+L 08/22/2025 - 17:42:34: Info (map "c1m2_streets") (file "/home/user/local/share/game_server/Left_4_Dead_2/left4dead2/addons/sourcemod/logs/errors_20250822.log")
+L 08/22/2025 - 17:42:34: [SM] Failed to load plugin "nextmap.smx": Nextmap is incompatible with this game.
+L 08/22/2025 - 17:42:40: Error log file session closed.

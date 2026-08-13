@@ -1,0 +1,4 @@
+L 01/05/2026 - 11:34:35: SourceMod error session started
+L 01/05/2026 - 11:34:35: Info (map "c1m2_streets") (file "/app/game/left4dead2/addons/sourcemod/logs/errors_20260105.log")
+L 01/05/2026 - 11:34:35: [SM] Failed to load plugin "nextmap.smx": Nextmap is incompatible with this game.
+L 01/05/2026 - 11:35:29: Error log file session closed.

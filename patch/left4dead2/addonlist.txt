@@ -1,0 +1,4 @@
+"AddonList"
+{
+	"Common_Infected_Random_Damage.vpk"		"1"
+}
