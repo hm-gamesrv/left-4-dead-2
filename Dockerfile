@@ -1,7 +1,7 @@
 # =================
 # 资源下载
 # =================
-FROM alpine:latest AS steamcmd
+FROM alpine:latest AS downloader
 
 RUN apk add --no-cache wget tar ca-certificates
 RUN wget -qO /tmp/steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz && \
@@ -35,12 +35,13 @@ RUN groupadd -g 1000 gamesrv && \
     useradd -u 1000 -g gamesrv -m -s /bin/bash gamesrv
 RUN mkdir -p /app /app-patch && chown -R 1000:1000 /app /app-patch
 
-COPY --from=steamcmd --chown=1000:1000 ["/out/steamcmd", "/opt/steamcmd"]
-
+COPY --from=downloader --chown=1000:1000 ["/out/steamcmd", "/opt/steamcmd"]
 COPY --chown=1000:1000 ["./init.sh", "/usr/local/bin/init.sh"]
 COPY --chown=1000:1000 ["./patch/", "/app-patch"]
 
 EXPOSE 27015/udp 27015/tcp
+
+VOLUME ["/app"]
 
 WORKDIR /app
 USER 1000:1000
