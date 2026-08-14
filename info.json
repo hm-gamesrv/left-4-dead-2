@@ -1,0 +1,57 @@
+{
+    "schemaVersion": 1,
+    "key": "left-4-dead-2",
+    "name": "Left 4 Dead 2",
+    "registries": {
+        "ghcr": "ghcr.io/hm-gamesrv/",
+        "aliyun": "crpi-i9e7zrpnu4792a5m.cn-chengdu.personal.cr.aliyuncs.com/hiromuraki/"
+    },
+    "resources": {
+        "ports": [
+            {
+                "host": "27015",
+                "container": "27015",
+                "proto": "udp",
+                "required": true,
+                "desc": "游戏联机端口"
+            },
+            {
+                "host": "27015",
+                "container": "27015",
+                "proto": "tcp",
+                "desc": "RCON 端口"
+            }
+        ],
+        "volumes": [
+            {
+                "host": "./left-4-dead-2-app",
+                "container": "/app",
+                "required": true,
+                "desc": "游戏本体、存档与配置（首次启动自动下载）"
+            }
+        ],
+        "env": [
+            {
+                "name": "STEAM_USERNAME",
+                "value": "",
+                "secret": true,
+                "desc": "拥有 L4D2 的 Steam 账号用户名（首次启动必填）"
+            },
+            {
+                "name": "STEAM_PASSWORD",
+                "value": "",
+                "secret": true,
+                "desc": "拥有 L4D2 的 Steam 账号密码（首次启动必填）"
+            }
+        ],
+        "extraArgs": ""
+    },
+    "variants": [
+        {
+            "key": "latest",
+            "name": "插件版",
+            "tag": "latest",
+            "container": "left-4-dead-2-server"
+        }
+    ]
+}
