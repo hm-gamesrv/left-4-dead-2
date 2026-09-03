@@ -30,20 +30,7 @@
                 "desc": "游戏本体、存档与配置（首次启动自动下载）"
             }
         ],
-        "env": [
-            {
-                "name": "STEAM_USERNAME",
-                "value": "",
-                "secret": true,
-                "desc": "拥有 L4D2 的 Steam 账号用户名（首次启动必填）"
-            },
-            {
-                "name": "STEAM_PASSWORD",
-                "value": "",
-                "secret": true,
-                "desc": "拥有 L4D2 的 Steam 账号密码（首次启动必填）"
-            }
-        ],
+        "env": [],
         "extraArgs": ""
     },
     "variants": [

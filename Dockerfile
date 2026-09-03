@@ -1,18 +1,22 @@
 # =================
-# 资源下载
+# Download
 # =================
-FROM alpine:3 AS downloader
+FROM debian:trixie-slim AS download
 
-RUN apk add --no-cache wget tar ca-certificates
-RUN wget -qO /tmp/steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz \
-    && mkdir -p /out/steamcmd \
-    && tar -xzf /tmp/steamcmd.tar.gz -C /out/steamcmd \
-    && rm -f /tmp/steamcmd.tar.gz
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends wget unzip ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /opt/depot-downloader \
+    && wget -qO /opt/depot-downloader/DepotDownloader-linux-x64.zip \
+    https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_3.4.0/DepotDownloader-linux-x64.zip \
+    && unzip /opt/depot-downloader/DepotDownloader-linux-x64.zip -d /opt/depot-downloader \
+    && rm -f /opt/depot-downloader/DepotDownloader-linux-x64.zip
 
 # ===================
-# 基座镜像
+# Runtime
 # ===================
-FROM debian:trixie-slim AS base
+FROM debian:trixie-slim AS runtime
 
 ENV TZ=Asia/Shanghai
 
@@ -35,7 +39,7 @@ RUN groupadd -g 1000 gamesrv \
     && useradd -u 1000 -g gamesrv -m -s /bin/bash gamesrv
 RUN mkdir -p /app /app-patch && chown -R 1000:1000 /app /app-patch
 
-COPY --from=downloader --chown=1000:1000 ["/out/steamcmd", "/opt/steamcmd"]
+COPY --from=download --chown=1000:1000 ["/opt/depot-downloader", "/opt/depot-downloader"]
 COPY --chown=1000:1000 ["./init.sh", "/usr/local/bin/init.sh"]
 COPY --chown=1000:1000 ["./patch/", "/app-patch"]
 
