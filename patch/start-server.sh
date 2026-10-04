@@ -3,12 +3,12 @@ set -u
 
 export LD_LIBRARY_PATH="/app/bin:/app${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
-cd /app && exec /app/srcds_linux \
+cd /app && ./srcds_linux \
     -game left4dead2 \
     -insecure \
     -port 27015 \
     +exec server.cfg \
-    "$@"
+    "$@" &
 
 pid=$!
 
